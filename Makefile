@@ -6,3 +6,10 @@ build:
 
 lint:
 		poetry run flake8
+
+test: 
+		pytest
+
+test-coverage:
+		coverage run -m pytest
+
