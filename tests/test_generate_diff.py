@@ -2,8 +2,8 @@ import os
 import pytest
 from gendiff.generate_diff import generate_diff
 
-JSON_FILE1_PATH = os.path.join(os.path.dirname(__file__), 'fixtures', 'json_file1.json')
-JSON_FILE2_PATH = os.path.join(os.path.dirname(__file__), 'fixtures', 'json_file2.json')
+J_F1_P = os.path.join(os.path.dirname(__file__), 'fixtures', 'json_file1.json')
+J_F2_P = os.path.join(os.path.dirname(__file__), 'fixtures', 'json_file2.json')
 
 EXPECTED_RESULT = '''{
 -  follow: false,
@@ -14,12 +14,13 @@ EXPECTED_RESULT = '''{
 +  verbose: true
 }'''
 
+
 def test_generate_diff():
-    result = generate_diff(JSON_FILE1_PATH, JSON_FILE2_PATH)
+    result = generate_diff(J_F1_P, J_F2_P)
     cleaned_result = result.replace(" ", "").replace("\n", "")
     cleaned_expected_result = EXPECTED_RESULT.replace(" ", "").replace("\n", "")
     assert cleaned_result == cleaned_expected_result
 
+
 if __name__ == '__main__':
     pytest.main()
-
