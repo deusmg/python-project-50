@@ -8,7 +8,7 @@ lint:
 		poetry run flake8
 
 test: 
-		pytest
+		pytest tests/test_generate_diff.py
 
 test-coverage:
 		coverage run -m pytest
