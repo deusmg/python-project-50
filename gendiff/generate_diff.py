@@ -1,6 +1,7 @@
 import json
 import difflib
 
+
 def generate_diff(file1_path, file2_path):
     with open(file1_path, 'r') as file1, open(file2_path, 'r') as file2:
         data1 = json.load(file1)
@@ -25,6 +26,5 @@ def generate_diff(file1_path, file2_path):
             line = line[1:]
             line = line.replace('"', '')
             result.append(f'{line}')
-    
-    return "\n".join(result)
 
+    return "\n".join(result)
