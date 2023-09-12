@@ -11,4 +11,5 @@ test:
 		poetry run pytest
 
 test-coverage:
+	    pytest --cov=gendiff tests/
 		coverage run -m pytest
