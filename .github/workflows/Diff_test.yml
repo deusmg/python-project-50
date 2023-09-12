@@ -23,6 +23,7 @@ jobs:
               pip install poetry
               poetry install
               poetry run pip install flake8
+              pip install coverage
       - name: Run linter and pytest
         run: |
           make lint
