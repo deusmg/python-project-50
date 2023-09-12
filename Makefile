@@ -5,11 +5,10 @@ build:
 		poetry build
 
 lint:
-	poetry run flake8 gendiff
+		poetry run flake8 gendiff
 
 test:
-	poetry run pytest
+		poetry run pytest
 
 test-coverage:
 		coverage run -m pytest
-
