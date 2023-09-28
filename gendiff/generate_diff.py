@@ -1,15 +1,20 @@
-import json
+#!/usr/bin/env python3
+
 import difflib
+import json
+from gendiff.scripts import parser_file
 
 
 def generate_diff(file1_path, file2_path):
-    with open(file1_path, 'r') as file1, open(file2_path, 'r') as file2:
-        d1 = json.load(file1)
-        d2 = json.load(file2)
+    # Парсинг первого файла
+    data1 = parser_file.parse(file1_path)
+
+    # Парсинг второго файла
+    data2 = parser_file.parse(file2_path)
 
     differ = difflib.Differ()
-    d1_str = json.dumps(d1, indent=2, sort_keys=True, separators=(',', ': '))
-    d2_str = json.dumps(d2, indent=2, sort_keys=True, separators=(',', ': '))
+    d1_str = json.dumps(data1, indent=2, sort_keys=True, separators=(',', ': '))
+    d2_str = json.dumps(data2, indent=2, sort_keys=True, separators=(',', ': '))
     d1_str = d1_str.splitlines()
     d2_str = d2_str.splitlines()
     diff = list(differ.compare(d1_str, d2_str))
