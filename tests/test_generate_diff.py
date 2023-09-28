@@ -1,36 +1,22 @@
-import os
+from gendiff import generate_diff
+from tests import FIXTURES_PATH
 import pytest
-from gendiff.generate_diff import generate_diff
-
-J_F1_P = os.path.join(os.path.dirname(__file__), 'fixtures', 'json_file1.json')
-J_F2_P = os.path.join(os.path.dirname(__file__), 'fixtures', 'json_file2.json')
-
-Y_F1_P = os.path.join(os.path.dirname(__file__), 'fixtures', 'file1.yml')
-Y_F2_P = os.path.join(os.path.dirname(__file__), 'fixtures', 'file2.yml')
-
-EXPECTED_RESULT = '''{
--  follow: false,
-   host: hexlet.io,
--  proxy: 123.234.53.22,
--  timeout: 50
-+  timeout: 20,
-+  verbose: true
-}'''
 
 
-def test_generate_diff():
-    result = generate_diff(J_F1_P, J_F2_P)
-    cleaned_result = result.replace(" ", "").replace("\n", "")
-    cleaned_expected_result = EXPECTED_RESULT.replace(" ", "").replace("\n", "")
-    assert cleaned_result == cleaned_expected_result
-
-
-def test_generate_diff_yaml():
-    result_yaml = generate_diff(Y_F1_P, Y_F2_P)
-    cleaned_result_yaml = result_yaml.replace(" ", "").replace("\n", "")
-    cleaned_expected_result = EXPECTED_RESULT.replace(" ", "").replace("\n", "")
-    assert cleaned_result_yaml == cleaned_expected_result
-
-
-if __name__ == '__main__':
-    pytest.main()
+@pytest.mark.parametrize("file1, file2, expected_path, format", [
+    (
+        f"{FIXTURES_PATH}/file1.json",
+        f"{FIXTURES_PATH}/file2.json",
+        f"{FIXTURES_PATH}/expected_for_stylish.txt",
+        "stylish"
+    ),
+    (
+        f"{FIXTURES_PATH}/file1.yml",
+        f"{FIXTURES_PATH}/file2.yml",
+        f"{FIXTURES_PATH}/expected_for_stylish.txt",
+        "stylish"
+    )])
+# ])
+def test_generate_diff(file1, file2, expected_path, format):
+    with open(expected_path, "r") as result:
+        assert result.read().strip() == generate_diff(file1, file2, format)
