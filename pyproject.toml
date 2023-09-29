@@ -1,10 +1,20 @@
 [tool.poetry]
 name = "hexlet-code"
 version = "0.1.0"
-description = ""
+description = "Compares two configuration files and shows a difference"
 authors = ["deusmg <laptevap@gmail.com>"]
 readme = "README.md"
 packages = [{include = "gendiff"}]
+
+repository = "https://github.com/deusmg/python-project-50"
+classifiers = [
+    "License :: Free for non-commercial use",
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Education",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3.10",
+    "Operating System :: OS Independent"
+]
 
 [tool.poetry.dependencies]
 python = "^3.10"
