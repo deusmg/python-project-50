@@ -9,6 +9,7 @@ def format_value(value):
         return value
     return f'\'{value}\''
 
+
 def walk(node, path=''):
     result = []
     for key, val in node.items():
@@ -25,6 +26,7 @@ def walk(node, path=''):
             result.append(f'{start_line} was added '
                           f'with value: {format_value(val["value"])}')
     return '\n'.join(result)
+
 
 def plain_format(diff_result: dict):
     return walk(diff_result)
