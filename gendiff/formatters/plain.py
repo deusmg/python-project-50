@@ -7,14 +7,13 @@ def format_value(value):
         return str(value).lower()
     if isinstance(value, int):
         return value
-    return f'"{value}"'
-
+    return f'\'{value}\''
 
 def walk(node, path=''):
     result = []
     for key, val in node.items():
         current_path = f'{path}{val["key"]}'
-        start_line = f'Property "{current_path}"'
+        start_line = f'Property \'{current_path}\''
         if val['operation'] == 'changed':
             result.append(f'{start_line} was updated. '
                           f'From {format_value(val["old"])} to {format_value(val["new"])}')
@@ -26,7 +25,6 @@ def walk(node, path=''):
             result.append(f'{start_line} was added '
                           f'with value: {format_value(val["value"])}')
     return '\n'.join(result)
-
 
 def plain_format(diff_result: dict):
     return walk(diff_result)
