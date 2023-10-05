@@ -1,7 +1,5 @@
-#!/usr/bin/env python3
-
-from gendiff.scripts.diff import diff
-from gendiff.scripts.parser_file import get_data
+from gendiff.diff import diff
+from gendiff.parser_file import get_data
 from gendiff.formatters.formatter import apply_format
 
 

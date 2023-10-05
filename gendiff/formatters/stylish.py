@@ -3,12 +3,12 @@ REPLACER = '  '
 INDENT = '    '
 
 
-def value_to_str(value, depth):
+def format_value(value, depth):
     if isinstance(value, dict):
         result = []
         for key, value in value.items():
             space = INDENT * (depth + 1)
-            result.append(f"\n{space}{key}: {value_to_str(value, depth + 1)}")
+            result.append(f"\n{space}{key}: {format_value(value, depth + 1)}")
         line = itertools.chain('{', result, '\n', [INDENT * depth, '}'])
         return ''.join(line)
     if isinstance(value, bool):
@@ -20,7 +20,7 @@ def value_to_str(value, depth):
 
 def build_line(data, key, depth, INDENT='  '):
     return f"{'  ' * depth}{INDENT}{data['key']}: " \
-           f"{value_to_str(data[key], depth + 1)}"
+           f"{format_value(data[key], depth + 1)}"
 
 
 def walk(node, depth=0):

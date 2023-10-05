@@ -10,4 +10,4 @@ def apply_format(diff_result, format):
         return plain_format(diff_result)
     if format == 'json':
         return json_format(diff_result)
-    raise Exception(f"You chose the wrong format!: {format}")
+    raise Exception(f'You chose the wrong format!: {format}')
