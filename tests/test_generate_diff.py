@@ -53,6 +53,7 @@ import pytest
         "json"
     )])
 
+
 def test_generate_diff(file1, file2, expected_path, format):
     with open(expected_path, "r") as result:
         assert result.read().strip() == generate_diff(file1, file2, format)
